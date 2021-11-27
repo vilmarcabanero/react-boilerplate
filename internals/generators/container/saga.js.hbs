@@ -1,6 +1,18 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import createAPI from 'api/createAPI';
+import Actions from './actions';
 
-// Individual exports for testing
+function* {{ camelCase name }}Default() {
+  yield call();
+}
+
+function* makeGet{{ properCase name }}() {
+  const api = yield createAPI();
+  const response = yield call(api.call, 'get{{ properCase name }}');
+  yield put(Actions.Creators.set{{ properCase name }}(response.data));
+}
+
 export default function* {{ camelCase name }}Saga() {
-  // See example in containers/HomePage/saga.js
+  yield takeLatest(Actions.Types.DEFAULT, {{ camelCase name }}Default);
+  yield takeLatest(Actions.Types.GET_{{ constantCase name }}, makeGet{{ properCase name }});
 }

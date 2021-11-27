@@ -1,6 +1,6 @@
 /*
  *
- * {{ properCase name }} reducer
+ * TaskPage reducer
  *
  */
 import { fromJS } from 'immutable';
@@ -17,7 +17,7 @@ export const defaultReducer = state =>
     status: false,
   });
 
-export const doSet{{ properCase name }} = (state, { data }) =>
+export const doSetTaskPage = (state, { data }) =>
   state.merge({
     data,
   });
@@ -26,7 +26,7 @@ const { Types } = Actions;
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.DEFAULT]: defaultReducer,
-  [Types.SET_{{ constantCase name }}]: doSet{{ properCase name }},
+  [Types.SET_TASK_PAGE]: doSetTaskPage,
 });
 
 export default reducer;

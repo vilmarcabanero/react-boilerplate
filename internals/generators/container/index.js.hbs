@@ -7,7 +7,7 @@
 {{#if memo}}
 import React, { memo } from 'react';
 {{else}}
-import React from 'react';
+import React, { useEffect } from 'react';
 {{/if}}
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -20,7 +20,7 @@ import { FormattedMessage } from 'react-intl';
 {{#if wantActionsAndReducer}}
 import { createStructuredSelector } from 'reselect';
 {{/if}}
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 
 {{#if wantSaga}}
 import { useInjectSaga } from 'utils/injectSaga';
@@ -28,6 +28,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 {{#if wantActionsAndReducer}}
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelect{{properCase name}} from './selectors';
+import Actions from './actions';
 import reducer from './reducer';
 {{/if}}
 {{#if wantSaga}}
@@ -37,13 +38,22 @@ import saga from './saga';
 import messages from './messages';
 {{/if}}
 
-export function {{ properCase name }}() {
+export function {{ properCase name }}(props) {
   {{#if wantActionsAndReducer}}
   useInjectReducer({ key: '{{ camelCase name }}', reducer });
   {{/if}}
   {{#if wantSaga}}
   useInjectSaga({ key: '{{ camelCase name }}', saga });
   {{/if}}
+
+  {{#if wantActionsAndReducer}}
+  const { get{{ properCase name }}, {{ camelCase name }}State } = props;
+  const { data } = {{ camelCase name }}State;
+  {{/if}}
+
+  useEffect(()=>{
+    get{{ properCase name }}();
+  },[]);
 
   return (
     <div>
@@ -55,24 +65,31 @@ export function {{ properCase name }}() {
     {{/if}}
     {{#if wantMessages}}
       <FormattedMessage {...messages.header} />
+      {data.map(a => <div key={a.id}>{a.title}</div>)}
     {{/if}}
     </div>
   );
 }
 
 {{ properCase name }}.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  get{{ properCase name }}: PropTypes.object,
+  {{ camelCase name }}State: PropTypes.object,
 };
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({
-  {{ camelCase name }}: makeSelect{{properCase name}}(),
+  {{ camelCase name }}State: makeSelect{{properCase name}}(),
 });
 {{/if}}
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    ...bindActionCreators(
+      {
+        ...Actions.Creators,
+      },
+      dispatch,
+    ),
   };
 }
 

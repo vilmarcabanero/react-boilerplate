@@ -1,7 +1,7 @@
 // import { fromJS } from 'immutable';
-// import { select{{ properCase name }}Domain } from '../selectors';
+// import { selectTaskPageDomain } from '../selectors';
 
-describe('select{{ properCase name }}Domain', () => {
+describe('selectTaskPageDomain', () => {
   it('Expect to have unit tests specified', () => {
     expect(false).toEqual(false);
   });

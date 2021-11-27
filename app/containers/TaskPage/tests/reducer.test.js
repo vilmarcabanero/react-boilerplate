@@ -1,10 +1,7 @@
-
 import { fromJS } from 'immutable';
-import reducer, {
-  defaultReducer,
-} from '../reducer';
+import reducer, { defaultReducer } from '../reducer';
 
-describe('{{ camelCase name }}Reducer', () => {
+describe('taskPageReducer', () => {
   const INITIAL_STATE = fromJS({
     status: true,
   });
@@ -14,8 +11,10 @@ describe('{{ camelCase name }}Reducer', () => {
   });
 
   it('defaultReducer', () => {
-    expect(defaultReducer(INITIAL_STATE, { status: false })).toEqual(INITIAL_STATE.merge({
-      status: false,
-    }));
+    expect(defaultReducer(INITIAL_STATE, { status: false })).toEqual(
+      INITIAL_STATE.merge({
+        status: false,
+      }),
+    );
   });
 });

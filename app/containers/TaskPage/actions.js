@@ -1,6 +1,6 @@
 /*
  *
- * {{ properCase name }} actions
+ * TaskPage actions
  *
  */
 
@@ -8,8 +8,8 @@ import { createActions } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
   default: null,
-  get{{ properCase name }}: null,
-  set{{ properCase name }}: ['data'],
+  getTaskPage: null,
+  setTaskPage: ['data'],
 });
 
 const Actions = {
