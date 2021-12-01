@@ -15,7 +15,11 @@ import LoginPage from 'containers/LoginPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import { CssBaseline } from '@material-ui/core';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import {
+  createTheme,
+  ThemeProvider,
+  StylesProvider,
+} from '@material-ui/core/styles';
 import PrivateRoute from 'utils/privateRoute';
 // import GlobalStyle from '../../global-styles';
 import { ThemeContextProvider } from 'utils/contextTheme';
@@ -40,20 +44,22 @@ export default function App() {
     darkMode,
   };
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <ThemeContextProvider value={themeContextProviderValues}>
-        <Switch>
-          <PrivateRoute exact path="/" component={HomePage} />
-          {localStorage.getItem('authToken') ? (
-            <Redirect to="/" />
-          ) : (
-            <Route exact path="/login" component={LoginPage} />
-          )}
-          <Route component={NotFoundPage} />
-        </Switch>
-        {/* <GlobalStyle /> */}
-      </ThemeContextProvider>
-    </ThemeProvider>
+    <StylesProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <ThemeContextProvider value={themeContextProviderValues}>
+          <Switch>
+            <PrivateRoute exact path="/" component={HomePage} />
+            {localStorage.getItem('authToken') ? (
+              <Redirect to="/" />
+            ) : (
+              <Route exact path="/login" component={LoginPage} />
+            )}
+            <Route component={NotFoundPage} />
+          </Switch>
+          {/* <GlobalStyle /> */}
+        </ThemeContextProvider>
+      </ThemeProvider>
+    </StylesProvider>
   );
 }

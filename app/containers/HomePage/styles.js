@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
+import { Button, Container } from '@material-ui/core';
 export const useStyles = makeStyles(() => ({
   darkmode: {
     display: 'flex',
@@ -15,4 +16,8 @@ export const useStyles = makeStyles(() => ({
   },
 }));
 
-export const Container = styled.div``;
+export const MainContainer = styled(Container)``;
+
+export const SubmitButton = styled(Button)`
+  text-transform: none;
+`;

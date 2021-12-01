@@ -4,6 +4,7 @@ import { Typography } from '@material-ui/core';
 import * as Styled from './styles';
 
 function {{ properCase name}}(props) {
+//  const classes = Styled.useStyles();
   const { defaultProp } = props;
   const [defaultState, setDefaultState] = useState('');
 
@@ -12,11 +13,11 @@ function {{ properCase name}}(props) {
   },[])
 
   return (
-    <Styled.Container>
+    <Styled.MainContainer>
       <Typography>
         This is the {{ properCase name}} component. {defaultProp} {defaultState}
       </Typography>
-    </Styled.Container>
+    </Styled.MainContainer>
   );
 };
 

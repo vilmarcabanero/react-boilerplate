@@ -21,7 +21,7 @@ export default function HomePage() {
     localStorage.setItem('darkMode', JSON.stringify(!darkMode));
   };
   return (
-    <Styled.Container>
+    <Styled.MainContainer>
       <Typography variant="h5">
         <FormattedMessage {...messages.header} />
       </Typography>
@@ -36,6 +36,9 @@ export default function HomePage() {
           onChange={darkModeHandler}
         />
       </ListItem>
-    </Styled.Container>
+      <Styled.SubmitButton variant="contained" color="primary">
+        Submit
+      </Styled.SubmitButton>
+    </Styled.MainContainer>
   );
 }
