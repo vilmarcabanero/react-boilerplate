@@ -1,0 +1,27 @@
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Typography } from '@material-ui/core';
+import * as Styled from './styles';
+
+function {{ properCase name}}(props) {
+  const { defaultProp } = props;
+  const [defaultState, setDefaultState] = useState('');
+
+  useEffect(() => {
+    setDefaultState('default');
+  },[])
+
+  return (
+    <Styled.Container>
+      <Typography>
+        This is the {{ properCase name}} component. {defaultProp} {defaultState}
+      </Typography>
+    </Styled.Container>
+  );
+};
+
+export default {{ properCase name}};
+
+{{ properCase name}}.propTypes = {
+  defaultProp: PropTypes.object,
+};

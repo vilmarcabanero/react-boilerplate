@@ -10,8 +10,6 @@ const { execSync } = require('child_process');
 const componentGenerator = require('./component/index.js');
 const containerGenerator = require('./container/index.js');
 const languageGenerator = require('./language/index.js');
-const childGenerator = require('./child/index.js');
-
 
 /**
  * Every generated backup file gets this extension
@@ -20,9 +18,8 @@ const childGenerator = require('./child/index.js');
 const BACKUPFILE_EXTENSION = 'rbgen';
 
 module.exports = plop => {
-  plop.setGenerator('child', childGenerator);
-  plop.setGenerator('container', containerGenerator);
   plop.setGenerator('component', componentGenerator);
+  plop.setGenerator('container', containerGenerator);
   plop.setGenerator('language', languageGenerator);
   plop.addHelper('directory', comp => {
     try {
@@ -41,24 +38,6 @@ module.exports = plop => {
       __dirname,
       '/../../app/',
       config.path,
-      plop.getHelper('properCase')(answers.name),
-      '**',
-      '**.js',
-    )}`;
-
-    try {
-      execSync(`npm run prettify -- "${folderPath}"`);
-      return folderPath;
-    } catch (err) {
-      throw err;
-    }
-  });
-  plop.setActionType('pretty', (answers, config) => {
-    const folderPath = `${path.join(
-      __dirname,
-      '/../../app/',
-      config.path,
-      plop.getHelper('properCase')(answers.parent),
       plop.getHelper('properCase')(answers.name),
       '**',
       '**.js',

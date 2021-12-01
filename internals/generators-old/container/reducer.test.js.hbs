@@ -10,11 +10,11 @@ describe('{{ camelCase name }}Reducer', () => {
   });
 
   it('returns the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(fromJS(INITIAL_STATE));
+    expect(reducer(undefined, {})).toEqual(fromJS({ status: true }));
   });
 
   it('defaultReducer', () => {
-    expect(defaultReducer(INITIAL_STATE, {})).toEqual(INITIAL_STATE.merge({
+    expect(defaultReducer(INITIAL_STATE, { status: false })).toEqual(INITIAL_STATE.merge({
       status: false,
     }));
   });
