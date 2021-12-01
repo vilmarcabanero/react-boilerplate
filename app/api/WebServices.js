@@ -15,9 +15,9 @@ const WebServices = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
       method: 'post',
       cache: null,
     },
-    getTaskPage: {
+    getTodos: {
       path: '/todos',
-      method: 'getAll',
+      method: 'getNoParam',
       cache: null,
     },
   };
@@ -32,7 +32,7 @@ const WebServices = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
         return api.delete(`${path}/${params}`);
       case 'get':
         return api.get(`${path}/${params}`);
-      case 'getAll':
+      case 'getNoParam':
         return api.get(path);
       case 'post':
         return api.post(

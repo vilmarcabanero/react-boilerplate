@@ -11,7 +11,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
-import LoginPage from 'containers/LoginPage/Loadable';
+import Auth from 'containers/Auth/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import { CssBaseline } from '@material-ui/core';
@@ -53,7 +53,7 @@ export default function App() {
             {localStorage.getItem('authToken') ? (
               <Redirect to="/" />
             ) : (
-              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/auth" component={Auth} />
             )}
             <Route component={NotFoundPage} />
           </Switch>
