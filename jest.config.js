@@ -6,6 +6,9 @@ module.exports = {
     '!app/app.js',
     '!app/global-styles.js',
     '!app/*/*/Loadable.{js,jsx}',
+    '!app/api/*',
+    '!app/config.js',
+    '!app/utils/*',
   ],
   coverageThreshold: {
     global: {
